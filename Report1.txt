@@ -1,0 +1,38 @@
+The execution was successful
+
+- Initializing Data Flow Task (Success)
+
+- Initializing Connections (Success)
+
+- Setting SQL Command (Success)
+
+- Setting Source Connection (Success)
+
+- Setting Destination Connection (Success)
+
+- Validating (Success)
+
+- Prepare for Execute (Success)
+
+- Pre-execute (Success)
+	Messages
+	* Information 0x402090dc: Data Flow Task 1: The processing of file "C:\Users\arkansas\Desktop\Projects\nashville-housing-project\Nashville-Housing-Data-Cleaned.csv" has started.
+	 (SQL Server Import and Export Wizard)
+	
+
+- Executing (Success)
+
+- Copying to C:\Users\arkansas\Desktop\Projects\nashville-housing-project\Nashville-Housing-Data-Cleaned.csv (Success)
+	* 56373 rows transferred
+
+- Post-execute (Success)
+	Messages
+	* Information 0x402090dd: Data Flow Task 1: The processing of file "C:\Users\arkansas\Desktop\Projects\nashville-housing-project\Nashville-Housing-Data-Cleaned.csv" has ended.
+	 (SQL Server Import and Export Wizard)
+	
+	* Information 0x4004300b: Data Flow Task 1: "Destination - Nashville-Housing-Data-Cleaned_csv" wrote 56373 rows.
+	 (SQL Server Import and Export Wizard)
+	
+
+
+

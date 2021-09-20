@@ -9,20 +9,36 @@ FROM Project1.dbo.NashvilleHousing
 
 --------------------------------------------------------------------------------------------------------------------------
 
--- Remove annoying H-M-S from SaleDate
+-- Remove annoying H-M-S from SaleDate and add a year column
 
 SELECT SaleDate, CONVERT(Date, SaleDate)
 FROM Project1.dbo.NashvilleHousing
 
-
+-- testing if the funcitons give what info we want
 SELECT SaleDateConverted, CONVERT(Date, SaleDate)
 FROM Project1.dbo.NashvilleHousing
 
+SELECT 
+SUBSTRING(CAST(SaleDateConverted AS varchar), 1, CHARINDEX('-', CAST(SaleDateConverted AS varchar))-1) AS Year
+FROM Project1.dbo.NashvilleHousing
+
+
+--adding new columns for data
 ALTER TABLE NashvilleHousing
 ADD SaleDateConverted Date;
 
+ALTER TABLE NashvilleHousing
+ADD SaleYear int;
+
+
+--update table
 UPDATE NashvilleHousing
 SET SaleDateConverted = CONVERT(Date, SaleDate)
+
+UPDATE NashvilleHousing
+SET SaleYear = SUBSTRING(CAST(SaleDateConverted AS varchar), 1, CHARINDEX('-', CAST(SaleDateConverted AS varchar))-1)
+
+--remove where year is 2019 since this is 2013-2016
 
 
  --------------------------------------------------------------------------------------------------------------------------
@@ -39,7 +55,7 @@ SELECT a.ParcelID, a.PropertyAddress, b.ParcelID, b.PropertyAddress, ISNULL(a.Pr
 FROM Project1.dbo.NashvilleHousing AS a
 JOIN Project1.dbo.NashvilleHousing AS b
 	ON a.ParcelID = b.ParcelID
-	AND a.[UniqueID ] <> b.[UniqueID ]
+	AND a.[UniqueID] <> b.[UniqueID]
 WHERE a.PropertyAddress is null
 
 -- final udpates below
@@ -48,7 +64,7 @@ SET PropertyAddress = ISNULL(a.PropertyAddress,b.PropertyAddress)
 FROM Project1.dbo.NashvilleHousing AS a
 JOIN Project1.dbo.NashvilleHousing AS b
 	ON a.ParcelID = b.ParcelID
-	AND a.[UniqueID ] <> b.[UniqueID ]
+	AND a.[UniqueID] <> b.[UniqueID]
 WHERE a.PropertyAddress is null
 
 
@@ -121,6 +137,10 @@ SET OwnerSplitState = PARSENAME(REPLACE(OwnerAddress,',','.'),1)
 
 
 --------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------------
 
